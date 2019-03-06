@@ -4,7 +4,11 @@ def Listanoticias(anyo,noticias):
 	lista=noticias.xpath('//news:news[starts-with(news:publication_date,"%s")]/news:title/text()'%anyo, namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9'})
 	return lista
 
+#2.Contar cuantas noticias hay en total
 
+def Contarnoticias(noticias):
+	numeronoticias=noticias.xpath('count(//news:news)', namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9'})
+	return int(numeronoticias)
 
 
 
@@ -20,3 +24,4 @@ def Listanoticias(anyo,noticias):
 #else: 
 	#for elem in Listanoticias(anyo,noticias):
 	#	print(elem)
+#print(Contarnoticias(noticias))
