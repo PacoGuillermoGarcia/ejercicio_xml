@@ -6,6 +6,6 @@
 
 3. Pedir una palabra o palabras clave por teclado y mostrar las noticias relacionadas con esa palabra
 
-4. Pedir por teclado un título y o subcadena del titulo y te muestra el titulo,en que cadena se ha publicado y la fecha
+4. Pedir por teclado el nombre de la cadena de televisión y o subcadena de la misma y te muestra el titulo y la fecha de las noticias de esa cadena de televisión
 
 5. Pedir por teclado una palabra y si esa palabra esta en el titulo de alguna imagen te muestra la URL de la imagen 
