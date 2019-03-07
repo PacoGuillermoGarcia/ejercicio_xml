@@ -23,7 +23,11 @@ def Noticiasporcadena(cad,noticias):
 	listafechas=noticias.xpath('//news:news[x:publication[news:name="%s"]]/news:publication_date/text()'%cad, namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9', 'x':'https://www.sitemaps.org/schemas/sitemap/0.9'})
 	return zip(listanoticias,listafechas)
 
+#5. Pedir por teclado una palabra y si esa palabra esta en el titulo de alguna imagen te muestra la URL de la imagen 
 
+def URLimagen(cad,noticias):
+	lista=noticias.xpath('//image:image[contains(.,"%s")]/image:loc/text()'%cad, namespaces={'image':'https://www.google.com/schemas/sitemap-image/1.1'})
+	return lista
 
 
 from lxml import etree
@@ -38,6 +42,8 @@ noticias=etree.parse("noticias.xml")
 cad=input("Dime una palabra clave: ")
 #for elem in Titulorelacionado(cad,noticias):
 #	print(elem)
-for elem in Noticiasporcadena(cad,noticias):
-	print("Titulo:",elem[0])
-	print("Fecha:",elem[1].replace("T"," ").replace("Z",""))
+#for elem in Noticiasporcadena(cad,noticias):
+#	print("Titulo:",elem[0])
+#	print("Fecha:",elem[1].replace("T"," ").replace("Z",""))
+for elem in URLimagen(cad,noticias):
+	print(elem)
