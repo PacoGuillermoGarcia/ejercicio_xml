@@ -48,25 +48,29 @@ while True:
 			anyo=input("Dime un año: ")
 		for elem in Listanoticias(anyo,noticias):
 			print("Titulo:",elem)
-	if opcion=="2":
+	elif opcion=="2":
 		print("El número total de noticias son:",Contarnoticias(noticias))
-	if opcion=="3":
+	elif opcion=="3":
 		palabra=input("Dime una palabra clave: ")
 		for elem in Titulorelacionado(palabra,noticias):
 			print(elem)	
-	if opcion=="4":
+	elif opcion=="4":
 		cadena=input("Dime la cadena de televisión: ")
-		while cadena not in ("LaSexta","Antena3"):
-			print("No tengo noticias de esa cadena")
+		while cadena not in ("LaSexta","Cocinatis"):
+			print("No tengo noticias de esa cadena, solo tengo noticias de LaSexta y Cocinatis")
 			cadena=input("Dime la cadena de televisión: ")
-		if cadena=="Antena3":
-			cadena="Cocinatis"
-			for elem in Noticiasporcadena(cadena,noticias):
-				print(elem)
-		else:
-			for elem in Noticiasporcadena(cadena,noticias):
-				if elem=="Cocinatis":
-					print("Antena3")
+		for elem in Noticiasporcadena(cadena,noticias):
+			print("Titulo:",elem[0])
+			print("Fecha de Publicación:",elem[1].replace("T"," ").replace("Z",""))
+			print("=============================================")
+	elif opcion=="5":
+		titulo=input("Dime una cadena para buscarte una imagen relacionada: ")
+		titulo=titulo.lower()
+		for elem in URLimagen(titulo,noticias):
+			print(elem)
+	elif opcion=="0":
+		print("Adios")
+		break
 #cad=input("Dime una palabra clave: ")
 #for elem in Titulorelacionado(cad,noticias):
 #	print(elem)
