@@ -16,6 +16,13 @@ def Titulorelacionado(cad,noticias):
 	lista=noticias.xpath('//news:news[contains(.,"%s")]/news:title/text()'%cad, namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9'})
 	return lista
 
+#4. Pedir por teclado el nombre de la cadena de televisión y o subcadena de la misma y te muestra el titulo y la fecha de las noticias de esa cadena de televisión
+
+def Noticiasporcadena(cad,noticias):
+	listanoticias=noticias.xpath('//news:news[x:publication[news:name="%s"]]/news:title/text()'%cad, namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9', 'x':'https://www.sitemaps.org/schemas/sitemap/0.9'})
+	listafechas=noticias.xpath('//news:news[x:publication[news:name="%s"]]/news:publication_date/text()'%cad, namespaces={'news':'https://www.google.com/schemas/sitemap-news/0.9', 'x':'https://www.sitemaps.org/schemas/sitemap/0.9'})
+	return zip(listanoticias,listafechas)
+
 
 
 
@@ -28,6 +35,9 @@ noticias=etree.parse("noticias.xml")
 	#for elem in Listanoticias(anyo,noticias):
 	#	print(elem)
 #print(Contarnoticias(noticias))
-#cad=input("Dime una palabra clave: ")
+cad=input("Dime una palabra clave: ")
 #for elem in Titulorelacionado(cad,noticias):
 #	print(elem)
+for elem in Noticiasporcadena(cad,noticias):
+	print("Titulo:",elem[0])
+	print("Fecha:",elem[1].replace("T"," ").replace("Z",""))
