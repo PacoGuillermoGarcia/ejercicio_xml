@@ -32,18 +32,45 @@ def URLimagen(cad,noticias):
 
 from lxml import etree
 noticias=etree.parse("noticias.xml")
-#anyo=input("Dime un año: ")
-#if anyo not in ('2014','2015','2016','2017','2018','2019'):
-	#print("No tengo noticias de ese año")
-#else: 
-	#for elem in Listanoticias(anyo,noticias):
-	#	print(elem)
-#print(Contarnoticias(noticias))
-cad=input("Dime una palabra clave: ")
+while True:
+	print('''
+		1.-Listar noticias filtradas por año
+		2.-Total de Noticias
+		3.-Introducir una palabra clave y obtener las noticias relacionadas
+		4.-Noticias separadas por cadenas de televisión
+		5.-Imagenes
+		0.-Salir''')
+	opcion=input("Opcion: ")
+	if opcion=="1":
+		anyo=input("Dime un año: ")
+		while anyo not in ('2014','2015','2016','2017','2018','2019'):
+			print("No tengo noticias de ese año")
+			anyo=input("Dime un año: ")
+		for elem in Listanoticias(anyo,noticias):
+			print("Titulo:",elem)
+	if opcion=="2":
+		print("El número total de noticias son:",Contarnoticias(noticias))
+	if opcion=="3":
+		palabra=input("Dime una palabra clave: ")
+		for elem in Titulorelacionado(palabra,noticias):
+			print(elem)	
+	if opcion=="4":
+		cadena=input("Dime la cadena de televisión: ")
+		while cadena not in ("LaSexta","Antena3"):
+			print("No tengo noticias de esa cadena")
+			cadena=input("Dime la cadena de televisión: ")
+		if cadena=="Antena3":
+			cadena="Cocinatis"
+			for elem in Noticiasporcadena(cadena,noticias):
+				print(elem)
+		else:
+			for elem in Noticiasporcadena(cadena,noticias):
+				if elem=="Cocinatis":
+					print("Antena3")
+#cad=input("Dime una palabra clave: ")
 #for elem in Titulorelacionado(cad,noticias):
 #	print(elem)
 #for elem in Noticiasporcadena(cad,noticias):
 #	print("Titulo:",elem[0])
 #	print("Fecha:",elem[1].replace("T"," ").replace("Z",""))
-for elem in URLimagen(cad,noticias):
-	print(elem)
+#for elem in URLimagen(cad,noticias):
